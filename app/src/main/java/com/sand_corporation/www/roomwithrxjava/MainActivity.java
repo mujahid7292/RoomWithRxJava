@@ -1,5 +1,6 @@
 package com.sand_corporation.www.roomwithrxjava;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +14,14 @@ import com.sand_corporation.www.roomwithrxjava.Adapter.CustomAdapter;
 import com.sand_corporation.www.roomwithrxjava.Remote.DataCallBack;
 import com.sand_corporation.www.roomwithrxjava.Remote.DataManager;
 import com.sand_corporation.www.roomwithrxjava.RoomDB.Table.Employee;
+import com.sand_corporation.www.roomwithrxjava.databinding.ActivityMainBinding;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DataCallBack {
 
     private static final String TAG = "MainActivity";
+    private ActivityMainBinding mainBinding;
     private DataManager dataManager;
     private Button btnGetData, btnSendData;
     private EditText edtFirstName, edtLastName;
@@ -26,8 +29,9 @@ public class MainActivity extends AppCompatActivity implements DataCallBack {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //WithoutMVVMDataBinding
+        //WithMVVMDataBinding
+        mainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+
         dataManager = new DataManager(this);
 
         btnGetData = findViewById(R.id.btnGetData);
