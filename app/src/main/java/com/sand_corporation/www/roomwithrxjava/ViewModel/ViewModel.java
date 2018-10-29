@@ -10,9 +10,21 @@ import java.util.Observable;
 public class ViewModel extends Observable {
 
     private Context context;
-    public ObservableField<Employee> employeeObservableField = new ObservableField<>();
+    //This below Observable Employee Object is to get from EditText
+    public ObservableField<Employee> employeeObservableField= new
+            ObservableField<>();
+    //This employee Object is to show in ListView
+    public Employee employee;
 
-    public ViewModel(Context context) {
-        this.context = context;
+    //This constructor for custom adapter
+    public ViewModel(Employee employee) {
+        this.employee = employee;
     }
+
+    public ViewModel(Context context, Employee employee) {
+        this.context = context;
+        employeeObservableField.set(employee);
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.sand_corporation.www.roomwithrxjava.Adapter;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.TextView;
 
 import com.sand_corporation.www.roomwithrxjava.R;
 import com.sand_corporation.www.roomwithrxjava.RoomDB.Table.Employee;
+import com.sand_corporation.www.roomwithrxjava.ViewModel.ViewModel;
+import com.sand_corporation.www.roomwithrxjava.databinding.SingleEmployeeBinding;
 
 import java.util.List;
 
@@ -17,6 +21,7 @@ public class CustomAdapter  extends BaseAdapter {
     private Context context;
     private List<Employee> employeeList;
     private LayoutInflater layoutInflater;
+    private static final String TAG = "CustomAdapter";
 
     public CustomAdapter(Context context, List<Employee> employeeList) {
         this.context = context;
@@ -42,20 +47,16 @@ public class CustomAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        if (convertView == null){
-            convertView = layoutInflater.inflate(R.layout.single_employee,null);
-            holder = new ViewHolder();
-            holder.txtFirstName = convertView.findViewById(R.id.txtFirstName);
-            holder.txtLastName = convertView.findViewById(R.id.txtLastName);
-            convertView.setTag(holder);
-        }else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        Employee employee = (Employee) getItem(position);
-        holder.txtFirstName.setText(employee.getFirstName());
-        holder.txtLastName.setText(employee.getLastName());
-        return convertView;
+        SingleEmployeeBinding singleEmployeeBinding = DataBindingUtil
+                .inflate(layoutInflater,R.layout.single_employee,parent,false);
+        Employee employee = employeeList.get(position);
+        String strFirstName = employee.getFirstName();
+        String strLastName = employee.getLastName();
+        Log.i(TAG,"Name: " + strFirstName +" " + strLastName);
+        ViewModel model = new ViewModel(employee);
+        singleEmployeeBinding.setViewModel(model);
+        View view = singleEmployeeBinding.getRoot();
+        return view;
     }
 
     public class ViewHolder{

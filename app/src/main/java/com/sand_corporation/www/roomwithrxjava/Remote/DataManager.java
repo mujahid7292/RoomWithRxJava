@@ -34,7 +34,7 @@ public class DataManager {
             public void run() throws Exception {
                 //We can not access Room DB in our main thread. For this reason we will
                 //use rxJava's Completable thread to access Room DB. It is like async task.
-                Employee employee1 = new Employee("Saifullah Al'"," Mujahid" );
+                Employee employee1 = new Employee(firstName,lastName );
                 mDB.getEmployeeDao().insertEmployee(employee1);
             }
         }).observeOn(AndroidSchedulers.mainThread())

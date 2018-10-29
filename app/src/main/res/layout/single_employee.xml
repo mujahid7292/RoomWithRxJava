@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtFirstName"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginEnd="5dp"
-        android:textSize="16sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtLastName"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginEnd="5dp"
-        android:textSize="16sp"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
 
-</LinearLayout>
+    <data>
+        <variable
+            name="ViewModel"
+            type="com.sand_corporation.www.roomwithrxjava.ViewModel.ViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtFirstName"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="16sp"
+            android:text="@{ViewModel.employee.firstName}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtLastName"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="16sp"
+            android:text="@{ViewModel.employee.lastName}"/>
+
+    </LinearLayout>
+</layout>
